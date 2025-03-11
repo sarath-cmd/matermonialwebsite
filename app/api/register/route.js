@@ -50,7 +50,7 @@ export async function POST(req) {
       nakshartram: data.get('nakshartram'),
       paadham: data.get('paadham'),
       dhosam: data.get('dhosam'),
-      userPhoto: userPhotoBuffer,
+      userphoto: userPhotoBuffer,
       idproof: idProofBuffer,
     };
 
