@@ -3,6 +3,7 @@ import User from "@/lib/model/registermodel";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from 'bcryptjs'
+import { NextResponse } from "next/server";
 
 const authOptions = {
     providers: [
@@ -13,19 +14,20 @@ const authOptions = {
                 const { email, password } = credentials;
                 try {
                     await dbconnect();
-                    const user = await User.findOne({email});
-                    if(!user) {
-                        return;
+                    const user = await User.findOne({ email });
+                    if (!user) {
+                        return NextResponse.json({message:'User not found'})
                     }
                     const passwordMatch = await bcrypt.compare(password, user.password);
-                    if(!passwordMatch) {
-                        return;
+                    if (!passwordMatch) {
+                        return NextResponse.json({message: 'Password didnot match'})
                     }
                     return user;
                 } catch (error) {
-                    console.log(error)
+                    console.error(error);
+                    throw new Error('Failed to authorize');
                 }
-            },
+            }            
         })
     ],
     session: {

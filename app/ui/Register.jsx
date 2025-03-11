@@ -20,8 +20,8 @@ const Register = () => {
   const [maritalstatus, setMaritalStatus] = useState('')
   const [partnerPreference, setPartnerPreference] = useState('')
   const [mobileno, setMobileno] = useState('')
-  const [userPhoto, setUserPhoto] = useState()
-  const [idproof, setIDProof] = useState()
+  const [userPhoto, setUserPhoto] = useState('')
+  const [idproof, setIDProof] = useState('')
   const [fatherName, setFatherName] = useState('')
   const [fatherOccupation, setFatherOccupation] = useState('')
   const [motherName, setMotherName] = useState('')
@@ -89,11 +89,23 @@ const Register = () => {
     formData.append('dhosam', dhosam);
 
     try {
+      const resUserExists = await fetch("api/userExists", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email})
+      })
+      const {user} = await resUserExists.json();
+      if(user){
+        setError("Email already Exists")
+        return;
+      }
+
       const response = await fetch('/api/register', {
         method: "POST",
         body: formData,
       });
-        
       if (response.ok) {
         console.log('User registered successfully');
       } else {
