@@ -1,5 +1,6 @@
 'use client';
 import { useState } from "react"
+import { districtlist } from "./varibles";
 
 const Register = () => {
   const [error, setError] = useState('')
@@ -42,6 +43,18 @@ const Register = () => {
   }
   function handleMaritalStatus(e) {
     setMaritalStatus(e.target.value);
+  }
+  function handleElderYounger(e) {
+    setElderYounger(e.target.value)
+  }
+  function handleDhosam(e) {
+    setDhosam(e.target.value)
+  }
+  function handleEducation(e) {
+    setEducation(e.target.value)
+  }
+  function handleDistrict(e) {
+    setDistrict(e.target.value)
   }
   async function handleSubmit(e) {
     e.preventDefault();
@@ -133,13 +146,13 @@ const Register = () => {
         <label className="text-lg">Confirm Password:</label>
         <input type="password" placeholder="Confirm Your Password" onChange={(e) => {setConfirmPassword(e.target.value)}}/>
         <div className="flex">
-            <label className="text-lg">
-            Gender:
-            <input type="radio" value="Male" required checked={gender === 'Male'} onChange={handlegender} /> Male
-            </label>
-            <label className="text-lg">
-            <input type="radio" value="Female" required checked={gender === 'Female'} onChange={handlegender} /> Female
-            </label>
+          <label className="text-lg">
+          Gender:
+          <input type="radio" value="Male" required checked={gender === 'Male'} onChange={handlegender} /> Male
+          </label>
+          <label className="text-lg">
+          <input type="radio" value="Female" required checked={gender === 'Female'} onChange={handlegender} /> Female
+          </label>
         </div>
         <label className="text-lg">Date of Birth:</label>
         <input type="date" onChange={(e) => {setDob(e.target.value)}} />
@@ -152,9 +165,23 @@ const Register = () => {
         <label className="text-lg">Gothram:</label>
         <input type="text" placeholder="Enter your Gothram" onChange={(e) => {setGothram(e.target.value)}}/>
         <label className="text-lg">District:</label>
-        <input  type="text" placeholder="Enter your District" onChange={(e) => {setDistrict(e.target.value)}} />
+        <select onChange={handleDistrict} value={district}>
+          <option defaultChecked >Select District</option>
+          {districtlist.map((district, index) => (
+            <option key={index} value={district}>{district}</option>
+          ))}
+        </select>
         <label className="text-lg">Education:</label>
-        <input  type="text" placeholder="Enter your Education level" onChange={(e) => {setEducation(e.target.value)}} />
+        <select onChange={handleEducation} value={education}>
+          <option>Select Education Level</option>
+          <option value='10th'>10th</option>
+          <option value='Diploma'>Diploma</option>
+          <option value='11th'>11th</option>
+          <option value='12th'>12th</option>
+          <option value='UG'>UG</option>
+          <option value='PG'>PG</option>
+          <option value='MBA'>MBA</option>
+        </select>
         <label className="text-lg">Occupation:</label>
         <input type="text" placeholder="Enter your Occupation" onChange={(e) => {setOccupation(e.target.value)}}/>
         <label className="text-lg">Salary (per month):</label>
@@ -197,7 +224,12 @@ const Register = () => {
         <label className="text-lg">Number of Brother or Sister:</label>
         <input type="number" placeholder="no.of Brother/Sister" onChange={(e) => {setBroSis(e.target.value)}}/>
         <label className="text-lg">Elder/Younger:</label>
-        <input type="text" placeholder="Elder (OR) Younger" onChange={(e) => {setElderYounger(e.target.value)}}/>
+        <select onChange={handleElderYounger} value={elderYounger}>
+          <option>Select</option>
+          <option value='Elder'>Elder</option>
+          <option value='Younger'>Younger</option>
+          <option value='Both'>Both</option>
+        </select>
         
         
 
@@ -211,7 +243,12 @@ const Register = () => {
         <label className="text-lg">Paadham:</label>
         <input type="number" placeholder="Padham" onChange={(e) => {setPaadham(e.target.value)}}/>
         <label className="text-lg">Dhosam:</label>
-        <input  type="text" placeholder="Dhosam" onChange={(e) => {setDhosam(e.target.value)}} />
+        <select onChange={handleDhosam} value={dhosam}>
+          <option>Select Status</option>
+          <option value='Rahu Ketu'>Rahu Ketu</option>
+          <option value='Chevvai'>Chevvai</option>
+          <option value='Nil'>Nil</option>
+        </select>
 
         <button className="bg-zinc-400 md:ml-5 rounded-2xl py-2 font-bold text-black" onClick={handleSubmit} >Submit</button>
         {error && (

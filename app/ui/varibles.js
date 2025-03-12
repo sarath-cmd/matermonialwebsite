@@ -28,3 +28,58 @@ export const latestprofile = [
     'D.O.B': '4.4.25',
   },
 ];
+
+export const districtlist = [
+  'Ariyalur',
+  'Chengalpattu',
+  'Chennai',
+  'Coimbatore',
+  'Cuddalore',
+  'Dharmapuri',
+  'Dindigul',
+  'Erode',
+  'Kallakurichi',
+  'Kanchipuram',
+  'Kanniyakumari',
+  'Karur',
+  'Krishnagiri',
+  'Madurai',
+  'Mayiladuthurai',
+  'Nagapattinam',
+  'Namakkal',
+  'Nilgiris',
+  'Perambalur',
+  'Pudukkottai',
+  'Ramanathapuram',
+  'Ranipet',
+  'Salem',
+  'Sivagangai',
+  'Tenkasi',
+  'Thanjavur',
+  'Theni',
+  'Thoothukudi',
+  'Tiruchirappalli',
+  'Tirunelveli',
+  'Tirupathur',
+  'Tiruppur',
+  'Tiruvallur',
+  'Tiruvannamalai',
+  'Tiruvarur',
+  'Vellore',
+  'Viluppuram',
+  'Virudhunagar',
+]
+
+export const maritalStatuslist = ['Unmarried', '2ndMarrage']
+
+export const dhosamlist = ['Rahu Ketu', 'Chevvai', 'Nil']
+
+export const educationlist = [
+  '10th',
+  'Diploma',
+  '11th',
+  '12th',
+  'UG',
+  'PG',
+  'MBA'
+]
