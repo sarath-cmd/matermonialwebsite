@@ -1,8 +1,10 @@
-import React from 'react'
+import Navigation from "../ui/userdashboard/Navigation"
 
 const page = () => {
   return (
-    <div>page</div>
+    <>
+      <Navigation />
+    </>
   )
 }
 

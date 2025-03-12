@@ -40,6 +40,9 @@ const Register = () => {
   function handlegender(e) {
     setGender(e.target.value);
   }
+  function handleMaritalStatus(e) {
+    setMaritalStatus(e.target.value);
+  }
   async function handleSubmit(e) {
     e.preventDefault();
     setError('')
@@ -157,7 +160,11 @@ const Register = () => {
         <label className="text-lg">Salary (per month):</label>
         <input type="number" placeholder="Enter your Salary" onChange={(e) => {setSalary(e.target.value)}} />
         <label className="text-lg">Marital Status:</label>
-        <input  type="text" placeholder="Enter your Martital status" onChange={(e) => {setMaritalStatus(e.target.value)}} />
+        <select onChange={handleMaritalStatus} value={maritalstatus}>
+          <option>Select Status</option>
+          <option value='Unmarried'>Unmarried</option>
+          <option value='2ndMarrage'>2ndMarrage</option>
+        </select>
         <label className="text-lg">Partner Preference:</label>
         <input type="text" placeholder="Enter your Partner Preference" onChange={(e) => {setPartnerPreference(e.target.value)}}/>
         <label className="text-lg">Mobile Number:</label>
