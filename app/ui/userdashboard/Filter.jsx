@@ -7,7 +7,7 @@ import { educationlist } from '../varibles';
 import { dhosamlist } from '../varibles';
 
 
-const Navigation = () => {
+const Filter = () => {
   const [selectedDistrict, setSelectedDistrict] = useState('');
   const [selectedEducation, setSelectedEducation] = useState('');
   const [selectedDhosam, setSelectedDhosam] = useState('');
@@ -36,7 +36,7 @@ const Navigation = () => {
     };
 
     try {
-      const response = await fetch('/api/dashboard', {
+      const response = await fetch('/api/userfilter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -104,4 +104,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default Filter;

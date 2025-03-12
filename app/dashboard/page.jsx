@@ -1,11 +1,9 @@
-import Navigation from "../ui/userdashboard/Navigation"
-import UserCard from "../ui/userdashboard/UserCard"
+import UserNavigation from "../ui/userdashboard/UserNavigation"
 
 const page = () => {
   return (
     <>
-      <Navigation />
-      <UserCard />
+      <UserNavigation />
     </>
   )
 }
