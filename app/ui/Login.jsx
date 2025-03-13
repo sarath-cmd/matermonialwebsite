@@ -28,6 +28,7 @@ const Login = () => {
       if (res.status === 500) {
         setError('Email already exists, please try another email');
       }
+      localStorage.setItem('email', {email})
       router.replace('/dashboard');
     } catch (error) {
       console.log(error)

@@ -1,12 +1,16 @@
-import Image from "next/image"
-import img1 from '@/public/img1.jpeg';
 
-const UserCard = () => {
+const UserCard = ({ user }) => {
   return (
-    <div className="p-5 w-screen sm:flex justify-center gap-8 my-2 sm:flex-wrap">
-        <Image src={img1} alt="test image" className="w-[300px] h-[450px]" />
-        <div className="h-[200px] w-[300px] bg-rose-400"></div>
-    </div>
+    <div key={index} className="p-5 w-screen sm:flex justify-center gap-8 sm:flex-wrap">
+      <div className="my-5">
+        <img src={user.userphoto} alt={`${user.name}'s photo`} className="h-[450px] w-full rounded-t" />
+        <div className="h-[150px] bg-rose-400 rounded-b p-5">
+          <h2 className="user-name">{user.name}</h2>
+          <p className="user-education">{user.education}</p>
+          <p className="user-occupation">{user.occupation}</p>
+        </div>
+      </div>
+    </div> 
   )
 }
 

@@ -12,6 +12,7 @@ const Filter = () => {
   const [selectedEducation, setSelectedEducation] = useState('');
   const [selectedDhosam, setSelectedDhosam] = useState('');
   const [selectedMaritalStatus, setSelectedMaritalStatus] = useState('')
+  const [users, setUsers] = useState([]);
 
   const handleDistrict = (event) => {
     setSelectedDistrict(event.target.value);
@@ -44,8 +45,9 @@ const Filter = () => {
         body: JSON.stringify(Data),
       });
 
-      const users = await response.json();
-      console.log('Matching profiles:', users);
+      const data = await response.json();
+      console.log('Matching profiles:', data);
+      setUsers(data.users);
     } catch (error) {
       console.error('Error fetching profiles:', error);
     }
@@ -100,6 +102,18 @@ const Filter = () => {
         </div>
         <button type="submit" className='my-auto bg-lime-300 py-2 px-5 font-bold'>Search Profiles</button>
       </form>
+      {users.map((user, index) => (
+        <div key={index} className="p-5 w-screen sm:flex justify-center gap-8 sm:flex-wrap">
+          <div className="my-5">
+            <img src={user.userphoto} alt={`${user.name}'s photo`} className="h-[450px] w-full rounded-t" />
+            <div className="h-[150px] bg-rose-400 rounded-b p-5">
+              <h2 className="user-name">{user.name}</h2>
+              <p className="user-education">{user.education}</p>
+              <p className="user-occupation">{user.occupation}</p>
+            </div>
+          </div>
+        </div> 
+      ))}
     </section>
   );
 };

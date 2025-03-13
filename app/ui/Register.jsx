@@ -1,8 +1,10 @@
 'use client';
 import { useState } from "react"
 import { districtlist } from "./varibles";
+import { useRouter } from "next/navigation";
 
 const Register = () => {
+  const router = useRouter()
   const [error, setError] = useState('')
   const [gender, setGender] = useState('Male');
   const [name, setName] = useState('')
@@ -124,6 +126,7 @@ const Register = () => {
       });
       if (response.ok) {
         console.log('User registered successfully');
+        router.push('/login')
       } else {
         console.error('Error registering user');
       }

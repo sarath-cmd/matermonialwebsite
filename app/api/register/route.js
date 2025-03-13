@@ -23,8 +23,10 @@ export async function POST(req) {
     const idProofBuffer = Buffer.from(idProofBytes);
 
     const hashedpassword = await bcrypt.hash(password, 10);
+    const rolesetter = 'user'
 
     const userData = {
+      role: rolesetter,
       name: data.get('name'),
       email: data.get('email'),
       password: hashedpassword,
