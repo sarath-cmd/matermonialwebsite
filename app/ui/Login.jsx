@@ -48,6 +48,12 @@ const Login = () => {
           <div className="text-red-500 font-bold md:ml-5 mt-5">{error}</div>
         )}
       </form>
+      <div className="absolute bottom-0 left-5 flex gap-2">
+        <h2 className="text-gray-500">
+          Login for admin
+        </h2>
+        <span className="underline text-gray-500">AdminLogin</span>
+      </div>
     </section>
   )
 }

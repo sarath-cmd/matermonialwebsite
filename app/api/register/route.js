@@ -23,10 +23,8 @@ export async function POST(req) {
     const idProofBuffer = Buffer.from(idProofBytes);
 
     const hashedpassword = await bcrypt.hash(password, 10);
-    const rolesetter = 'user'
 
     const userData = {
-      role: rolesetter,
       name: data.get('name'),
       email: data.get('email'),
       password: hashedpassword,
@@ -41,18 +39,18 @@ export async function POST(req) {
       occupation: data.get('occupation'),
       salary: data.get('salary'),
       maritalstatus: data.get('maritalstatus'),
-      partnerPreference: data.get('partnerPreference'),
+      partnerpreference: data.get('partnerPreference'),
       mobileno: data.get('mobileno'),
-      fatherName: data.get('fatherName'),
-      fatherOccupation: data.get('fatherOccupation'),
-      motherName: data.get('motherName'),
-      motherOccupation: data.get('motherOccupation'),
+      fathername: data.get('fatherName'),
+      fatheroccupation: data.get('fatherOccupation'),
+      mothername: data.get('motherName'),
+      motheroccupation: data.get('motherOccupation'),
       asset: data.get('asset'),
       address: data.get('address'),
-      nativePlace: data.get('nativePlace'),
-      parentNumber: data.get('parentNumber'),
-      broSis: data.get('broSis'),
-      elderYounger: data.get('elderYounger'),
+      nativeplace: data.get('nativePlace'),
+      parentnumber: data.get('parentNumber'),
+      numberofbrosis: data.get('broSis'),
+      elderoryounger: data.get('elderYounger'),
       rasi: data.get('rasi'),
       nakshartram: data.get('nakshartram'),
       paadham: data.get('paadham'),
