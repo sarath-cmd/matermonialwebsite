@@ -16,11 +16,13 @@ export async function POST(req) {
     if (!userPhoto) throw new Error("User photo is missing");
     const userPhotoBytes = await userPhoto.arrayBuffer();
     const userPhotoBuffer = Buffer.from(userPhotoBytes);
+    const userbase64 = userPhotoBuffer.toString('base64')
 
     const idProof = data.get('idproof');
     if (!idProof) throw new Error("ID proof is missing");
     const idProofBytes = await idProof.arrayBuffer();
     const idProofBuffer = Buffer.from(idProofBytes);
+    const idproofbase64 = idProofBuffer.toString('base64')
 
     const hashedpassword = await bcrypt.hash(password, 10);
 
@@ -55,7 +57,7 @@ export async function POST(req) {
       nakshartram: data.get('nakshartram'),
       paadham: data.get('paadham'),
       dhosam: data.get('dhosam'),
-      userphoto: userPhotoBuffer,
+      userphoto: userbase64,
       idproof: idProofBuffer,
     };
 

@@ -13,7 +13,7 @@ export async function POST(req) {
 
         const Users = await User.find(query, 'name education occupation userphoto _id');
         console.log(Users);
-        return NextResponse.json({ Users });
+        return NextResponse.json({ users: Users });
     } catch (error) {
         console.log(error);
         return NextResponse.json({ error: "An error occurred while fetching profiles." });

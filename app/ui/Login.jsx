@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 
 const Login = () => {
   const [error, setError] = useState('');
@@ -26,9 +27,8 @@ const Login = () => {
         return;
       }
       if (res.status === 500) {
-        setError('Email already exists, please try another email');
+        setError('Server Error');
       }
-      localStorage.setItem('email', {email})
       router.replace('/dashboard');
     } catch (error) {
       console.log(error)
@@ -52,7 +52,7 @@ const Login = () => {
         <h2 className="text-gray-500">
           Login for admin
         </h2>
-        <span className="underline text-gray-500">AdminLogin</span>
+        <Link href={'/adminlogin'} className="underline text-gray-500">AdminLogin</Link>
       </div>
     </section>
   )

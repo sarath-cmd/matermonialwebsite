@@ -37,7 +37,7 @@ const Filter = () => {
     };
 
     try {
-      const response = await fetch('/api/userfilter', {
+      const response = await fetch('/api/dashboard/userfilter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -102,18 +102,38 @@ const Filter = () => {
         </div>
         <button type="submit" className='my-auto bg-lime-300 py-2 px-5 font-bold'>Search Profiles</button>
       </form>
-      {users.map((user, index) => (
-        <div key={index} className="p-5 w-screen sm:flex justify-center gap-8 sm:flex-wrap">
-          <div className="my-5">
-            <img src={user.userphoto} alt={`${user.name}'s photo`} className="h-[450px] w-full rounded-t" />
-            <div className="h-[150px] bg-rose-400 rounded-b p-5">
-              <h2 className="user-name">{user.name}</h2>
-              <p className="user-education">{user.education}</p>
-              <p className="user-occupation">{user.occupation}</p>
+      
+      {users && users.length > 0 && (
+        users.map((user, index) => {
+          const userPhotoBase64 = user.userphoto
+
+          return (
+            <div key={index} className="p-5 w-screen sm:flex justify-center gap-8 sm:flex-wrap">
+              <div className="my-5">
+                {userPhotoBase64 ? (
+                  <img src={`data:image/png;base64,${userPhotoBase64}`} alt={`${user.name}'s photo`} className="h-[450px] w-[400px] rounded-t"/>
+                ) : (
+                  <p>No valid photo available</p>
+                )}
+                <div className="h-[150px] bg-yellow-100 rounded-b p-5 flex flex-col">
+                  <div className='flex gap-2'>
+                    <p className="text-lg font-bold">Name:</p>
+                    <h2 className="font-medium my-auto">{user.name}</h2>
+                  </div>
+                  <div className='flex gap-2 mt-2'>
+                    <p className="text-lg font-bold">Education:</p>
+                    <p className="font-medium my-auto">{user.education}</p>
+                  </div>
+                  <div className='flex gap-2 mt-2'>
+                    <p className="text-lg font-bold">Education:</p>
+                    <p className="font-medium my-auto">{user.occupation}</p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div> 
-      ))}
+          );
+        }))
+      }
     </section>
   );
 };
