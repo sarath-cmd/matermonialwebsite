@@ -25,8 +25,19 @@ export async function POST(req) {
     const idproofbase64 = idProofBuffer.toString('base64')
 
     const hashedpassword = await bcrypt.hash(password, 10);
+    const generateUniqueUserId = async () => {
+      while (true) {
+        const userId = Math.floor(Math.random() * 9000) + 1001; // Generate a random ID > 1000
+        const existingUserId = await User.findOne({ userId });
+        if (!existingUserId) {
+          return userId;
+        }
+      }
+    };
+    const userId = await generateUniqueUserId()
 
     const userData = {
+      userID: userId,
       name: data.get('name'),
       email: data.get('email'),
       password: hashedpassword,
@@ -58,7 +69,7 @@ export async function POST(req) {
       paadham: data.get('paadham'),
       dhosam: data.get('dhosam'),
       userphoto: userbase64,
-      idproof: idProofBuffer,
+      idproof: idproofbase64,
     };
 
     await dbconnect();

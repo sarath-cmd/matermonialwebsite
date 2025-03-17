@@ -26,9 +26,6 @@ const Login = () => {
         setError('Invalid Credentials')
         return;
       }
-      if (res.status === 500) {
-        setError('Server Error');
-      }
       router.replace('/dashboard');
     } catch (error) {
       console.log(error)

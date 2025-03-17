@@ -12,6 +12,7 @@ const Filter = () => {
   const [selectedEducation, setSelectedEducation] = useState('');
   const [selectedDhosam, setSelectedDhosam] = useState('');
   const [selectedMaritalStatus, setSelectedMaritalStatus] = useState('')
+  const [selectedGender, setSelectedGender] = useState('')
   const [users, setUsers] = useState([]);
 
   const handleDistrict = (event) => {
@@ -26,14 +27,19 @@ const Filter = () => {
   const handleMaritalStatus = (event) => {
     setSelectedMaritalStatus(event.target.value);
   }
+  const handleGender = (event) => {
+    setSelectedGender(event.target.value);
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const Data = {
       district: selectedDistrict,
+      gender: selectedGender,
       education: selectedEducation,
       dhosam: selectedDhosam,
+      maritalstatus: selectedMaritalStatus,
     };
 
     try {
@@ -64,6 +70,16 @@ const Filter = () => {
               {districtlist.map((district, index) => (
                 <option key={index} value={district}>{district}</option>
               ))}
+            </select>
+          </label>
+        </div>
+        <div className='my-2'>
+          <label>
+            Gender:
+            <select onChange={handleGender} value={selectedGender} className='my-auto'>
+              <option>Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
             </select>
           </label>
         </div>
@@ -104,36 +120,40 @@ const Filter = () => {
       </form>
       
       {users && users.length > 0 && (
-        users.map((user, index) => {
-          const userPhotoBase64 = user.userphoto
+        <div className="p-5 flex flex-wrap justify-center gap-8">
+          {users.map((user, index) => {
+            const userPhotoBase64 = user.userphoto;
 
-          return (
-            <div key={index} className="p-5 w-screen sm:flex justify-center gap-8 sm:flex-wrap">
-              <div className="my-5">
+            return (
+              <div key={index} className="my-5 w-full sm:w-[300px] flex-none">
                 {userPhotoBase64 ? (
-                  <img src={`data:image/png;base64,${userPhotoBase64}`} alt={`${user.name}'s photo`} className="h-[450px] w-[400px] rounded-t"/>
+                  <img src={`data:image/png;base64,${userPhotoBase64}`} alt={`${user.name}'s photo`} className="h-[450px] w-full rounded-t" />
                 ) : (
                   <p>No valid photo available</p>
                 )}
-                <div className="h-[150px] bg-yellow-100 rounded-b p-5 flex flex-col">
-                  <div className='flex gap-2'>
+                <div className="h-[180px] bg-yellow-100 rounded-b p-5 flex flex-col">
+                  <div className="flex gap-2">
                     <p className="text-lg font-bold">Name:</p>
                     <h2 className="font-medium my-auto">{user.name}</h2>
                   </div>
-                  <div className='flex gap-2 mt-2'>
+                  <div className="flex gap-2 mt-2">
                     <p className="text-lg font-bold">Education:</p>
                     <p className="font-medium my-auto">{user.education}</p>
                   </div>
-                  <div className='flex gap-2 mt-2'>
-                    <p className="text-lg font-bold">Education:</p>
+                  <div className="flex gap-2 mt-2">
+                    <p className="text-lg font-bold">Occupation:</p>
                     <p className="font-medium my-auto">{user.occupation}</p>
+                  </div>
+                  <div className="flex gap-2 mt-2">
+                    <p className="text-lg font-bold">District:</p>
+                    <p className="font-medium my-auto">{user.district}</p>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        }))
-      }
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 };
