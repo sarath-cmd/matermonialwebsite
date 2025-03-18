@@ -229,6 +229,7 @@ const Register = () => {
         <label className="text-lg">Elder/Younger:</label>
         <select onChange={handleElderYounger} value={elderYounger}>
           <option>Select</option>
+          <option value='Nil'>Nil</option>
           <option value='Elder'>Elder</option>
           <option value='Younger'>Younger</option>
           <option value='Both'>Both</option>

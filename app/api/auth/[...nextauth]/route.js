@@ -13,7 +13,7 @@ const authOptions = {
                 const { email, password } = credentials;
                 try {
                     await dbconnect();
-                    const user = await User.findOne({ email }, 'email password');
+                    const user = await User.findOne({ email }, 'email password userID');
                     if (!user) {
                         return null;
                     }
@@ -21,7 +21,7 @@ const authOptions = {
                     if (!passwordMatch) {
                         return null;
                     }
-                    return user;
+                    return { userID: user.userID };
                 } catch (error) {
                     console.error(error);
                     throw new Error('Failed to authorize');
@@ -36,6 +36,25 @@ const authOptions = {
     pages: {
         signIn: "/"
     },
+    callbacks: {
+        async jwt({ token, user }) {
+            // Add userID to the token if they exist
+            if (user) {
+                token.userID = user.userID;
+            }
+            return token;
+        },
+        async session({ session, token }) {
+            // Add userID to the session user object
+            if (token) {
+                session.user = {
+                    ...session.user,
+                    userID: token.userID,
+                };
+            }
+            return session;
+        }
+    }
 }
 
 const handler = NextAuth(authOptions);

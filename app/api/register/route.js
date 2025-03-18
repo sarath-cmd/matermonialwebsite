@@ -27,7 +27,7 @@ export async function POST(req) {
     const hashedpassword = await bcrypt.hash(password, 10);
     const generateUniqueUserId = async () => {
       while (true) {
-        const userId = Math.floor(Math.random() * 9000) + 1001; // Generate a random ID > 1000
+        const userId = Math.floor(Math.random() * 99000) + 1001; // Generate a random ID > 1000 and less than 1lack
         const existingUserId = await User.findOne({ userId });
         if (!existingUserId) {
           return userId;

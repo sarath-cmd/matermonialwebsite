@@ -13,7 +13,7 @@ export async function POST(req) {
         if (dhosam) query.dhosam = dhosam;
         if (maritalstatus) query.maritalstatus = maritalstatus;
 
-        const Users = await User.find(query, 'name education occupation userphoto _id district');
+        const Users = await User.find(query, 'name education occupation userphoto userID district');
         return NextResponse.json({ users: Users });
     } catch (error) {
         console.log(error);

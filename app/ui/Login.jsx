@@ -4,12 +4,14 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 const Login = () => {
   const [error, setError] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter()
+  const { data: session } = useSession();
   async function handleclick(e) {
     e.preventDefault();
     setError('');
@@ -26,6 +28,7 @@ const Login = () => {
         setError('Invalid Credentials')
         return;
       }
+      sessionStorage.setItem('userid', session?.user.userID)
       router.replace('/dashboard');
     } catch (error) {
       console.log(error)
