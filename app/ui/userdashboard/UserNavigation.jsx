@@ -8,9 +8,12 @@ import { useState, useEffect } from "react";
 const UserNavigation = () => {
   const [usermenu, setusermenu] = useState(false)
   const [userid, setUserid] = useState(null);
+  const [viewlimit, setviewlimit] = useState(null);
   useEffect(() => {
-    const authToken = sessionStorage.getItem('userid');
+    const authToken = localStorage.getItem('userid');
+    const viewlimit = localStorage.getItem('viewlimit');
     setUserid(authToken);
+    setviewlimit(viewlimit);
   }, []);
   function menustate() {
     if(usermenu === false){
@@ -24,14 +27,15 @@ const UserNavigation = () => {
       <div className="hidden md:block">
         <div className="flex w-screen justify-center sm:justify-end sm:mt-2 sm:pr-10">
             <ul className="flex gap-5 font-bold my-auto mr-5">
-              <li className="font-bold">User ID:{userid}</li>
+              <li className="font-bold">User ID: {userid}</li>
+              <li className="font-bold">View limit: {viewlimit}</li>
               <li><Link href={'/dashboard'} >All Profiles</Link></li>
               <li><Link href={'/dashboard/filterprofiles'} >Filter Profiles</Link></li>
               <li><Link href={'/dashboard/searchprofiles'} >Search Profiles</Link></li>
             </ul>
-            {/* <Link> */}
-                <Image src={user} alt="userImage" className="h-16 w-16" />
-            {/* </Link> */}
+            <Link href={'/dashboard/profile'}>
+              <Image src={user} alt="userImage" className="h-16 w-16" />
+            </Link>
         </div>
       </div>
       <div className="md:hidden">
@@ -46,10 +50,14 @@ const UserNavigation = () => {
           <div className="px-2 bg-slate-300 py-5">
             <ul className="flex flex-col gap-3 my-2 font-semibold px-5">
             <li className="font-bold">User ID: {userid}</li>
+            <li className="font-bold">View limit: {viewlimit}</li>
               <li><Link href={'/dashboard'} >All Profiles</Link></li>
               <li><Link href={'/dashboard/filterprofiles'} >Filter Profiles</Link></li>
               <li><Link href={'/dashboard/searchprofiles'} >Search Profiles</Link></li>
             </ul>
+            <Link href={'/dashboard/profile'}>
+              <Image src={user} alt="userImage" className="h-16 w-16" />
+            </Link>
           </div>
         }
       </div>

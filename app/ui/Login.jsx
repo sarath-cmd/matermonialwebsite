@@ -28,7 +28,8 @@ const Login = () => {
         setError('Invalid Credentials')
         return;
       }
-      sessionStorage.setItem('userid', session?.user.userID)
+      localStorage.setItem('userid', session?.user.userID)
+      localStorage.setItem('viewlimit', session?.user.viewlimit)
       router.replace('/dashboard');
     } catch (error) {
       console.log(error)

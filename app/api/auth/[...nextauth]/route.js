@@ -13,7 +13,7 @@ const authOptions = {
                 const { email, password } = credentials;
                 try {
                     await dbconnect();
-                    const user = await User.findOne({ email }, 'email password userID');
+                    const user = await User.findOne({ email }, 'email password userID viewlimit');
                     if (!user) {
                         return null;
                     }
@@ -21,7 +21,7 @@ const authOptions = {
                     if (!passwordMatch) {
                         return null;
                     }
-                    return { userID: user.userID };
+                    return { userID: user.userID, viewlimit: user.viewlimit };
                 } catch (error) {
                     console.error(error);
                     throw new Error('Failed to authorize');
@@ -41,6 +41,7 @@ const authOptions = {
             // Add userID to the token if they exist
             if (user) {
                 token.userID = user.userID;
+                token.viewlimit = user.viewlimit
             }
             return token;
         },
@@ -50,6 +51,7 @@ const authOptions = {
                 session.user = {
                     ...session.user,
                     userID: token.userID,
+                    viewlimit: token.viewlimit
                 };
             }
             return session;
