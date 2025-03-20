@@ -33,9 +33,9 @@ const UserNavigation = () => {
               <li><Link href={'/dashboard/filterprofiles'} >Filter Profiles</Link></li>
               <li><Link href={'/dashboard/searchprofiles'} >Search Profiles</Link></li>
             </ul>
-            <Link href={'/dashboard/profile'}>
+            {/* <Link href={'/dashboard/profile'}> */}
               <Image src={user} alt="userImage" className="h-16 w-16" />
-            </Link>
+            {/* </Link> */}
         </div>
       </div>
       <div className="md:hidden">
@@ -55,9 +55,9 @@ const UserNavigation = () => {
               <li><Link href={'/dashboard/filterprofiles'} >Filter Profiles</Link></li>
               <li><Link href={'/dashboard/searchprofiles'} >Search Profiles</Link></li>
             </ul>
-            <Link href={'/dashboard/profile'}>
+            {/* <Link href={'/dashboard/profile'}> */}
               <Image src={user} alt="userImage" className="h-16 w-16" />
-            </Link>
+            {/* </Link> */}
           </div>
         }
       </div>
