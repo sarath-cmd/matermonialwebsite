@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Loading from "@/app/ui/Loading";
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter()
   useEffect(() => {
     async function getprofiles() {
       try {
@@ -66,7 +68,7 @@ const Dashboard = () => {
                     <p className="text-lg font-bold">District:</p>
                     <p className="font-medium my-auto">{user.district}</p>
                   </div>
-                  <button className="w-full my-2 py-2 bg-lime-500 font-bold rounded-xl">View profile</button>
+                  <button className="w-full my-2 py-2 bg-lime-500 font-bold rounded-xl" onClick={() => router.push(`/profile/${user.userID}`)}>View profile</button>
                 </div>
               </div>
             );

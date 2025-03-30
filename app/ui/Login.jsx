@@ -30,6 +30,7 @@ const Login = () => {
       }
       localStorage.setItem('userid', session?.user.userID)
       localStorage.setItem('viewlimit', session?.user.viewlimit)
+      localStorage.setItem('authToken', res.token);
       router.replace('/dashboard');
     } catch (error) {
       console.log(error)
