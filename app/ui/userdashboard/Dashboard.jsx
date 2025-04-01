@@ -12,6 +12,12 @@ const Dashboard = () => {
   useEffect(() => {
     async function getprofiles() {
       try {
+        const useridtoken = localStorage.getItem('userid');
+        const emailtoken = localStorage.getItem('email');
+        if (!useridtoken || !emailtoken) {
+          router.push('/login');
+          return;
+        }
         const response = await fetch('/api/dashboard', {
           method: 'GET',
           headers: {

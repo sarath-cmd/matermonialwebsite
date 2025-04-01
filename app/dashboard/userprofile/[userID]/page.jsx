@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Loading from "@/app/ui/Loading";
 import { useParams } from "next/navigation";
 import { districtlist } from "@/app/ui/varibles";
+import UserNavigation from "@/app/ui/userdashboard/UserNavigation";
 
 export default function Dashboard() {
   const [users, setUsers] = useState([]);
@@ -19,7 +20,6 @@ export default function Dashboard() {
   const [newmobilenumber, setnewmobilenumber] = useState('')
   const [newasset, setnewasset] = useState('')
   const [newaddress, setnewaddress] = useState('')
-  const [error, seterror] = useState('')
   const router = useRouter()
   const { userID } = useParams();
 
@@ -62,7 +62,7 @@ export default function Dashboard() {
     localStorage.removeItem('email');
     localStorage.removeItem('viewlimit');
     localStorage.removeItem('nextauth.message');
-    signOut();
+    signOut()
     router.push('/login')
   }
   function handleEducation(e) {
@@ -73,9 +73,55 @@ export default function Dashboard() {
   }
   async function handlesubmit(e) {
     e.preventDefault()
-    seterror("")
+    const Data = {
+      userID: localStorage.getItem('userid'),
+      cast: newCast,
+      kulam: newKulam,
+      gothram: newGothram,
+      education: newEducation,
+      district: newdistrict,
+      mobileno: newmobilenumber,
+      asset: newasset,
+      address: newaddress,
+    }
     try {
-      const res = await fetch
+      const res = await fetch('/api/dashboard/userprofile', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(Data),
+      })
+      setUpdate(false)
+      window.location.reload();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  async function handledelete(e) {
+    e.preventDefault()
+    if (!localStorage.getItem('userid') || !localStorage.getItem("email")) {
+      router.push('/login');
+    }
+    try {
+      const userID = localStorage.getItem('userid');
+      const email = localStorage.getItem('email');
+      const res = await fetch('/api/dashboard/userprofile', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({userID, email}),
+      })
+      localStorage.removeItem('userid');
+      localStorage.removeItem('email');
+      localStorage.removeItem('viewlimit');
+      localStorage.removeItem('nextauth.message');
+      if (res.redirected) {
+        signOut()
+        window.location.href = res.url;
+        return;
+      }
     } catch (error) {
       console.log(error)
     }
@@ -85,7 +131,8 @@ export default function Dashboard() {
   }
 
   return (
-    <section>
+    <section className="overflow-hidden">
+      <UserNavigation />
       <div>
         {users.map((user, index) => (
           <div key={index}>
@@ -98,7 +145,7 @@ export default function Dashboard() {
                   <h1 className="text-2xl font-bold mb-3 xl:text-4xl">Personal Information</h1>
                   <p className="ml-5 text-lg xl:text-3xl"><strong>Name:</strong> {user.name}</p>
                   <p className="ml-5 text-lg xl:text-3xl"><strong>Gender:</strong> {user.gender}</p>
-                  <p className="ml-5 text-lg xl:text-3xl"><strong>D.O.B:</strong> {user.dob}</p>
+                  <p className="ml-5 text-lg xl:text-3xl"><strong>D.O.B:</strong> {user.dob.split("T")[0]}</p>
                   <p className="ml-5 text-lg xl:text-3xl"><strong>T.O.B:</strong> {user.tob}</p>
                   <p className="ml-5 text-lg xl:text-3xl"><strong>Cast:</strong> {user.cast}</p>
                   <p className="ml-5 text-lg xl:text-3xl"><strong>Kulam:</strong> {user.kulam}</p>
@@ -146,9 +193,11 @@ export default function Dashboard() {
           </div>
         ))}
       </div>
-      <>
-        <button className="p-2 bg-orange-300 font-bold m-5 w-fit text-2xl rounded" onClick={() => setUpdate(true)}>Update</button>
-      </>
+      {!update && 
+        <>
+          <button className="p-2 bg-orange-300 font-bold m-5 w-fit text-2xl rounded" onClick={() => setUpdate(true)}>Update</button>
+        </>
+      }
       {update && (
         <div>
           <span className="flex">
@@ -191,14 +240,13 @@ export default function Dashboard() {
           </span>
           <span className="flex">
             <p className="ml-5 text-lg xl:text-3xl"><strong>Asset:</strong></p>
-            <input type="number" placeholder="new mobilenumber" onChange={(e) => setnewasset(e.target.value)} />
+            <input type="text" placeholder="Asset" onChange={(e) => setnewasset(e.target.value)} />
           </span>
           <span className="flex">
             <p className="ml-5 text-lg xl:text-3xl"><strong>Address:</strong></p>
-            <input type="number" placeholder="new mobilenumber" onChange={(e) => setnewaddress(e.target.value)} />
+            <input type="text" placeholder="new Address" onChange={(e) => setnewaddress(e.target.value)} />
           </span>
-          <button className="p-2 bg-orange-300 font-bold m-5 w-fit text-2xl rounded" onClick={handlesubmit}>Update</button>
-          {error && <p className="text-red-500 font-semibold">{error}</p>}
+          <button className="p-2 bg-lime-400 font-bold m-5 w-fit text-2xl rounded" onClick={handlesubmit}>Save</button>
         </div>
       )}
       <div className="bg-red-200 p-5 flex flex-col">
@@ -206,7 +254,7 @@ export default function Dashboard() {
         <button className="p-2 bg-red-400 font-bold m-5 w-fit rounded" onClick={(e) => {handlesignout(e)}} 
         >Signout</button>
         <p><strong>Warning:</strong><br /><span className="ml-5">When you Delete the Account your profile viewlimit will also be Deleted.</span></p>
-        <button className="p-2 bg-red-400 font-bold m-5 w-fit rounded">Delete Account</button>
+        <button className="p-2 bg-red-400 font-bold m-5 w-fit rounded" onClick={handledelete}>Delete Account</button>
       </div>
     </section>
   );

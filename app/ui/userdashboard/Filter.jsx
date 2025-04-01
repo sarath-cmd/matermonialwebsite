@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import { districtlist } from '../varibles';
 import { maritalStatuslist } from '../varibles';
 import { educationlist } from '../varibles';
@@ -9,6 +9,17 @@ import { useRouter } from 'next/navigation';
 
 
 const Filter = () => {
+
+  useEffect(() => {
+    const useridtoken = localStorage.getItem('userid');
+    const emailtoken = localStorage.getItem('email');
+    if (!useridtoken || !emailtoken) {
+      router.push('/login');
+      return;
+    }
+  }, [])
+  
+
   const [selectedDistrict, setSelectedDistrict] = useState('');
   const [selectedEducation, setSelectedEducation] = useState('');
   const [selectedDhosam, setSelectedDhosam] = useState('');

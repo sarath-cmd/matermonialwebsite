@@ -1,9 +1,20 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 const Search = () => {
+
+  useEffect(() => {
+    const useridtoken = localStorage.getItem('userid');
+    const emailtoken = localStorage.getItem('email');
+    if (!useridtoken || !emailtoken) {
+      router.push('/login');
+      return;
+    }
+  }, [])
+  
+
   const [userID, setUserID] = useState('');
   const [user, setUser] = useState(null);
   const router = useRouter()
