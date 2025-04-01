@@ -5,6 +5,7 @@ import { districtlist } from '../varibles';
 import { maritalStatuslist } from '../varibles';
 import { educationlist } from '../varibles';
 import { dhosamlist } from '../varibles';
+import { useRouter } from 'next/navigation';
 
 
 const Filter = () => {
@@ -14,6 +15,7 @@ const Filter = () => {
   const [selectedMaritalStatus, setSelectedMaritalStatus] = useState('')
   const [selectedGender, setSelectedGender] = useState('')
   const [users, setUsers] = useState([]);
+  const router = useRouter()
 
   const handleDistrict = (event) => {
     setSelectedDistrict(event.target.value);
@@ -151,7 +153,7 @@ const Filter = () => {
                     <p className="text-lg font-bold">District:</p>
                     <p className="font-medium my-auto">{user.district}</p>
                   </div>
-                  <button className="w-full my-2 py-2 bg-lime-500 font-bold rounded-xl">View profile</button>
+                  <button className="w-full my-2 py-2 bg-lime-500 font-bold rounded-xl" onClick={() => router.push(`/profile/${user.userID}`)}>View profile</button>
                 </div>
               </div>
             );

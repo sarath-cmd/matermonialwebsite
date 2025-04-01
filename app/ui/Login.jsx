@@ -28,10 +28,12 @@ const Login = () => {
         setError('Invalid Credentials')
         return;
       }
-      localStorage.setItem('userid', session?.user.userID)
-      localStorage.setItem('viewlimit', session?.user.viewlimit)
-      localStorage.setItem('authToken', res.token);
-      router.replace('/dashboard');
+      if(res.ok) {
+        localStorage.setItem('userid', session?.user.userID)
+        localStorage.setItem('viewlimit', session?.user.viewlimit)
+        localStorage.setItem('email', email)
+        router.replace('/dashboard');
+      }
     } catch (error) {
       console.log(error)
     }

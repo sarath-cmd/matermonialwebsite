@@ -4,11 +4,13 @@ import Image from "next/image"
 import user from '@/public/user.png';
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const UserNavigation = () => {
   const [usermenu, setusermenu] = useState(false)
   const [userid, setUserid] = useState(null);
   const [viewlimit, setviewlimit] = useState(null);
+  const router = useRouter()
   useEffect(() => {
     const authToken = localStorage.getItem('userid');
     const viewlimit = localStorage.getItem('viewlimit');
@@ -33,9 +35,9 @@ const UserNavigation = () => {
               <li><Link href={'/dashboard/filterprofiles'} >Filter Profiles</Link></li>
               <li><Link href={'/dashboard/searchprofiles'} >Search Profiles</Link></li>
             </ul>
-            <Link href={'/dashboard/userprofile'}>
+            <button onClick={() => router.push(`/dashboard/userprofile/${userid}`)}>
               <Image src={user} alt="userImage" className="h-16 w-16" />
-            </Link>
+            </button>
         </div>
       </div>
       <div className="md:hidden">
@@ -55,9 +57,9 @@ const UserNavigation = () => {
               <li><Link href={'/dashboard/filterprofiles'} >Filter Profiles</Link></li>
               <li><Link href={'/dashboard/searchprofiles'} >Search Profiles</Link></li>
             </ul>
-            {/* <Link href={'/dashboard/profile'}> */}
+            <button onClick={() => router.push(`/dashboard/userprofile/${userid}`)}>
               <Image src={user} alt="userImage" className="h-16 w-16" />
-            {/* </Link> */}
+            </button>
           </div>
         }
       </div>
