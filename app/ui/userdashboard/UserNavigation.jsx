@@ -26,7 +26,7 @@ const UserNavigation = () => {
   }
   return (
     <section>
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <div className="flex w-screen justify-center sm:justify-end sm:mt-2 sm:pr-10">
             <ul className="flex gap-5 font-bold my-auto mr-5">
               <li className="font-bold">User ID: {userid}</li>
@@ -34,13 +34,14 @@ const UserNavigation = () => {
               <li><Link href={'/dashboard'} >All Profiles</Link></li>
               <li><Link href={'/dashboard/filterprofiles'} >Filter Profiles</Link></li>
               <li><Link href={'/dashboard/searchprofiles'} >Search Profiles</Link></li>
+              <li><Link href={'/upgrade'} >Upgrade</Link></li>
             </ul>
             <button onClick={() => router.push(`/dashboard/userprofile/${userid}`)}>
               <Image src={user} alt="userImage" className="h-16 w-16" />
             </button>
         </div>
       </div>
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <div className="flex justify-end mt-5 mr-5">
           <button className="font-black p-2 bg-slate-200 rounded" onClick={(e) => menustate(e)}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 sm:size-7">
@@ -56,6 +57,7 @@ const UserNavigation = () => {
               <li><Link href={'/dashboard'} >All Profiles</Link></li>
               <li><Link href={'/dashboard/filterprofiles'} >Filter Profiles</Link></li>
               <li><Link href={'/dashboard/searchprofiles'} >Search Profiles</Link></li>
+              <li><Link href={'/upgrade'} >Upgrade</Link></li>
             </ul>
             <button onClick={() => router.push(`/dashboard/userprofile/${userid}`)}>
               <Image src={user} alt="userImage" className="h-16 w-16" />

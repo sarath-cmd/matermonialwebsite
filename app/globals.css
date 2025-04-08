@@ -5,3 +5,15 @@
 input, select{
     @apply mb-5 mt-1 p-2 bg-slate-200 rounded md:ml-5
 }
+
+button svg path {
+    fill: #6e8fef;
+}  
+button:hover svg path {
+    fill: white;
+}
+
+td {
+    max-width:150px;
+    word-wrap: break-word;
+}

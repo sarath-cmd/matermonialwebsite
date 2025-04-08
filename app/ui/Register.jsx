@@ -39,6 +39,31 @@ const Register = () => {
   const [nakshartram, setNakshartram] =useState('')
   const [paadham, setPaadham] =useState('')
   const [dhosam, setDhosam] =useState('')
+  const [t1r1c1, sett1r1c1] = useState('')
+  const [t1r1c2, sett1r1c2] = useState('')
+  const [t1r1c3, sett1r1c3]= useState('')
+  const [t1r1c4, sett1r1c4] = useState('')
+  const [t1r2c1, sett1r2c1] = useState('')
+  const [t1r2c4, sett1r2c4] = useState('')
+  const [t1r3c1, sett1r3c1] = useState('')
+  const [t1r3c4, sett1r3c4] = useState('')
+  const [t1r4c1, sett1r4c1] = useState('')
+  const [t1r4c2, sett1r4c2] = useState('')
+  const [t1r4c3, sett1r4c3] = useState('')
+  const [t1r4c4, sett1r4c4] = useState('')
+
+  const [t2r1c1, sett2r1c1] = useState('')
+  const [t2r1c2, sett2r1c2] = useState('')
+  const [t2r1c3, sett2r1c3]= useState('')
+  const [t2r1c4, sett2r1c4] = useState('')
+  const [t2r2c1, sett2r2c1] = useState('')
+  const [t2r2c4, sett2r2c4] = useState('')
+  const [t2r3c1, sett2r3c1] = useState('')
+  const [t2r3c4, sett2r3c4] = useState('')
+  const [t2r4c1, sett2r4c1] = useState('')
+  const [t2r4c2, sett2r4c2] = useState('')
+  const [t2r4c3, sett2r4c3] = useState('')
+  const [t2r4c4, sett2r4c4] = useState('')
 
   function handlegender(e) {
     setGender(e.target.value);
@@ -105,6 +130,30 @@ const Register = () => {
     formData.append('nakshartram', nakshartram);
     formData.append('paadham', paadham);
     formData.append('dhosam', dhosam);
+    formData.append('t1r1c1', t1r1c1);
+    formData.append('t1r1c2', t1r1c2);
+    formData.append('t1r1c3', t1r1c3);
+    formData.append('t1r1c4', t1r1c4);
+    formData.append('t1r2c1', t1r2c1);
+    formData.append('t1r2c4', t1r2c4);
+    formData.append('t1r3c1', t1r3c1);
+    formData.append('t1r3c4', t1r3c4);
+    formData.append('t1r4c1', t1r4c1);
+    formData.append('t1r4c2', t1r4c2);
+    formData.append('t1r4c3', t1r4c3);
+    formData.append('t1r4c4', t1r4c4);
+    formData.append('t2r1c1', t2r1c1);
+    formData.append('t2r1c2', t2r1c2);
+    formData.append('t2r1c3', t2r1c3);
+    formData.append('t2r1c4', t2r1c4);
+    formData.append('t2r2c1', t2r2c1);
+    formData.append('t2r2c4', t2r2c4);
+    formData.append('t2r3c1', t2r3c1);
+    formData.append('t2r3c4', t2r3c4);
+    formData.append('t2r4c1', t2r4c1);
+    formData.append('t2r4c2', t2r4c2);
+    formData.append('t2r4c3', t2r4c3);
+    formData.append('t2r4c4', t2r4c4);
 
     try {
       const resUserExists = await fetch("api/userExists", {
@@ -253,6 +302,106 @@ const Register = () => {
           <option value='Chevvai'>Chevvai</option>
           <option value='Nil'>Nil</option>
         </select>
+        <table className="md:hidden">
+          <tbody>
+            <tr>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett1r1c1(e.target.value)} /></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett1r1c2(e.target.value)} /></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett1r1c3(e.target.value)} /></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett1r1c4(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett1r2c1(e.target.value)} /></td>
+              <td colSpan="2" rowSpan={2}><p className="flex justify-center items-center">Rashi</p></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett1r2c4(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett1r3c1(e.target.value)} /></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett1r3c4(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett1r4c1(e.target.value)} /></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett1r4c2(e.target.value)} /></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett1r4c3(e.target.value)} /></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett1r4c4(e.target.value)} /></td>
+            </tr>
+          </tbody>
+        </table>
+        <table className="md:hidden my-10">
+          <tbody>
+            <tr>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett2r1c1(e.target.value)} /></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett2r1c2(e.target.value)} /></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett2r1c3(e.target.value)} /></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett2r1c4(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett2r2c1(e.target.value)} /></td>
+              <td colSpan="2" rowSpan={2}><p className="flex justify-center items-center">Amsam</p></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett2r2c4(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett2r3c1(e.target.value)} /></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett2r3c4(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett2r4c1(e.target.value)} /></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett2r4c2(e.target.value)} /></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett2r4c3(e.target.value)} /></td>
+              <td><input type="text" className="w-full m-0" onChange={(e) => sett2r4c4(e.target.value)} /></td>
+            </tr>
+          </tbody>
+        </table>
+        <table className="hidden md:block">
+          <tbody>
+            <tr>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett1r1c1(e.target.value)} /></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett1r1c2(e.target.value)} /></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett1r1c3(e.target.value)} /></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett1r1c4(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett1r2c1(e.target.value)} /></td>
+              <td colSpan="2" rowSpan={2}><p className="flex justify-center items-center">Rashi</p></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett1r2c4(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett1r3c1(e.target.value)} /></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett1r3c4(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett1r4c1(e.target.value)} /></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett1r4c2(e.target.value)} /></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett1r4c3(e.target.value)} /></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett1r4c4(e.target.value)} /></td>
+            </tr>
+          </tbody>
+        </table>
+        <table className="hidden md:block my-10">
+          <tbody>
+            <tr>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett2r1c1(e.target.value)} /></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett2r1c2(e.target.value)} /></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett2r1c3(e.target.value)} /></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett2r1c4(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett2r2c1(e.target.value)} /></td>
+              <td colSpan="2" rowSpan={2}><p className="flex justify-center items-center">Amsam</p></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett2r2c4(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett2r3c1(e.target.value)} /></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett2r3c4(e.target.value)} /></td>
+            </tr>
+            <tr>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett2r4c1(e.target.value)} /></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett2r4c2(e.target.value)} /></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett2r4c3(e.target.value)} /></td>
+              <td><input type="text" className="w-24 m-0 lg:w-32 xl:w-40" onChange={(e) => sett2r4c4(e.target.value)} /></td>
+            </tr>
+          </tbody>
+        </table>
 
         <button className="bg-zinc-400 md:ml-5 rounded-2xl py-2 font-bold text-black" onClick={handleSubmit} >Submit</button>
         {error && (

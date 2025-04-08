@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import UserNavigation from "@/app/ui/userdashboard/UserNavigation";
+import Loading from "@/app/ui/Loading";
 
 const ProfilePage = () => {
   const { userID } = useParams(); // Extract userID from URL
@@ -34,7 +35,7 @@ const ProfilePage = () => {
   }, [userID]);
 
   if (!user) {
-    return <p>Loading profile...</p>;
+    return <Loading />;
   }
 
   return (
@@ -92,6 +93,108 @@ const ProfilePage = () => {
               <p className="ml-5 text-lg xl:text-3xl"><strong>Paadham:</strong> {user.paadham}</p>
               <p className="ml-5 text-lg xl:text-3xl"><strong>Dhosam:</strong> {user.dhosam}</p>
           </div>
+        </div>
+        <table className="md:hidden mt-10">
+          <tbody>
+            <tr>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t1r1c1}</td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t1r1c2}</td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t1r1c3}</td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t1r1c4}</td>
+            </tr>
+            <tr>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t1r2c1}</td>
+              <td colSpan="2" rowSpan={2}><p className="flex justify-center items-center">Rashi</p></td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t1r2c4}</td>
+            </tr>
+            <tr>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t1r3c1}</td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t1r3c4}</td>
+            </tr>
+            <tr>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t1r4c1}</td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t1r4c2}</td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t1r4c3}</td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t1r4c4}</td>
+            </tr>
+          </tbody>
+        </table>
+        <table className="md:hidden my-10">
+          <tbody>
+            <tr>
+              <td className="w-20 sm:w-32 m-0 border-2 border-soild border-black px-1 py-2">{user.t2r1c1}</td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-soild border-black px-1 py-2">{user.t2r1c2}</td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-soild border-black px-1 py-2">{user.t2r1c3}</td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-soild border-black px-1 py-2">{user.t2r1c4}</td>
+            </tr>
+            <tr>
+              <td className="w-20 sm:w-32 m-0 border-2 border-soild border-black px-1 py-2">{user.t2r2c1}</td>
+              <td colSpan="2" rowSpan={2}><p className="flex justify-center items-center">Amsam</p></td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-soild border-black px-1 py-2">{user.t2r2c4}</td>
+            </tr>
+            <tr>
+              <td className="w-20 sm:w-32 m-0 border-2 border-soild border-black px-1 py-2">{user.t2r3c1}</td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-soild border-black px-1 py-2">{user.t2r3c4}</td>
+            </tr>
+            <tr>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t2r4c1}</td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t2r4c2}</td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t2r4c3}</td>
+              <td className="w-20 sm:w-32 m-0 border-2 border-solid border-black px-1 py-2">{user.t2r4c4}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div className="flex justify-center gap-10 mt-10">
+          <table className="hidden md:block">
+            <tbody className="bg-gray-200">
+              <tr>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t1r1c1}</td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t1r1c2}</td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t1r1c3}</td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t1r1c4}</td>
+              </tr>
+              <tr>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t1r2c1}</td>
+                <td colSpan="2" rowSpan={2}><p className="flex justify-center items-center">Rashi</p></td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t1r2c4}</td>
+              </tr>
+              <tr>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t1r3c1}</td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t1r3c4}</td>
+              </tr>
+              <tr>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t1r4c1}</td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t1r4c2}</td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t1r4c3}</td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t1r4c4}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table className="hidden md:block">
+            <tbody className="bg-gray-200">
+              <tr>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t2r1c1}</td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t2r1c2}</td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t2r1c3}</td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t2r1c4}</td>
+              </tr>
+              <tr>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t2r2c1}</td>
+                <td colSpan="2" rowSpan={2}><p className="flex justify-center items-center">Amsam</p></td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t2r2c4}</td>
+              </tr>
+              <tr>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t2r3c1}</td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t2r3c4}</td>
+              </tr>
+              <tr>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t2r4c1}</td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t2r4c2}</td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t2r4c3}</td>
+                <td className="w-24 m-0 lg:w-32 xl:w-40 border-2 border-solid border-black px-1 py-2">{user.t2r4c4}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
